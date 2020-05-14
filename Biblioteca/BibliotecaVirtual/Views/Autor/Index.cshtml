@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             <p>
-                @Html.ActionLink("Crear Nuevo", "Create")
+                <a href="@Url.Action("Create", "Autor")" class="btn btn-success"><i class="fa fa-plus"></i><span><strong> Crear</strong></span></a>
             </p>
             <table class="table">
                 <tr>
@@ -33,9 +33,9 @@
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>
                         <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.IdAutor },new { @class  = "btn btn-primary"}) |
-                            @Html.ActionLink("Detalle", "Details", new { id = item.IdAutor }, new { @class = "btn btn-info" }) |
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdAutor }, new { @class = "btn btn-warning" })
+                            <a href="@Url.Action("Edit", "Autor", new { id = item.IdAutor })" class="btn btn-primary"><i class="fa fa-pencil"></i><span><strong> Editar</strong></span></a>
+                            <a href="@Url.Action("Details", "Autor", new { id = item.IdAutor })" class="btn btn-info"><i class="fa fa-search"></i><span><strong> Ver</strong></span></a>
+                            <a href="@Url.Action("Delete", "Autor", new { id = item.IdAutor })" class="btn btn-danger"><i class="fa fa-trash"></i><span><strong> Eliminar</strong></span></a>
                         </td>
                     </tr>
                 }

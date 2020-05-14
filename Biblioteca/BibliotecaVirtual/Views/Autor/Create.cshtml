@@ -25,20 +25,20 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-6">
+                        <div class="col-md-10">
                             @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Crear" class="btn btn-default" />
+                            <input type="submit" value="Crear" class="btn btn-success" />
                         </div>
                     </div>
                 </div>
             }
             <div>
-                @Html.ActionLink("Regresar a la lista", "Index")
+                <a href="@Url.Action("Index", "Autor")" class="btn btn-info"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
             </div>
         </div>
     </div>

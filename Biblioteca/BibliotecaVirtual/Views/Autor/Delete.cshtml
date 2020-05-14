@@ -16,7 +16,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 service-item">
+            <div class="col-md-10 service-item">
                 <div class="service-icon"><i class="fa fa-database"></i></div>
                 <h4 class="service-title">@Html.DisplayNameFor(model => model.Nombre)</h4>
                 <p class="service-description"> @Html.DisplayFor(model => model.Nombre)</p>
@@ -25,13 +25,11 @@
                     @Html.AntiForgeryToken()
 
                     <div class="form-actions no-color">
-                        <input type="submit" value="Eliminar" class="btn btn-info" />
-                        @Html.ActionLink("Regresar", "Index",null,new { @class= "btn btn-default"})
+                        <input type="submit" value="Eliminar" class="btn btn-danger" />
+                        <a href="@Url.Action("Index", "Autor")" class="btn btn-info"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
                     </div>
                 }
-
             </div>
-           
         </div>
     </div>
 </section>

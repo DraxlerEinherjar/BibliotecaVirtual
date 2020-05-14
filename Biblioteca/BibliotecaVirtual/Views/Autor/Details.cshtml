@@ -21,8 +21,8 @@
                     <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Nombre)</a></h4>
                     <p class="service-description"> @Html.DisplayFor(model => model.Nombre)</p>
                     <p>
-                        @Html.ActionLink("Editar", "Edit", new { id = Model.IdAutor }) |
-                        @Html.ActionLink("Regresar", "Index")
+                        <a href="@Url.Action("Edit", "Autor", new { id = Model.IdAutor })" class="btn btn-primary"><i class="fa fa-pencil"></i><span><strong> Editar</strong></span></a> |
+                        <a href="@Url.Action("Index", "Autor")" class="btn btn-info"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
                     </p>
                 </div>
             </div>

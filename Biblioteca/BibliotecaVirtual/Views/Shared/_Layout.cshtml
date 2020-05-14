@@ -39,11 +39,14 @@
     <!-- Main Stylesheet File -->
     <link href="~/Content/ProOnliPc/css/style.css" rel="stylesheet">
 
-
-
-    @*@Styles.Render("~/Content/css")*@
-    @*@Scripts.Render("~/bundles/modernizr")*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
+<style>
+    body {
+        font-size: 2rem !important;
+    }
+</style>
 <body>
     <div id="preloader"></div>
 
