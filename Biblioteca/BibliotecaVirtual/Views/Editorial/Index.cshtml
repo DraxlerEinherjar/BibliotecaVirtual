@@ -1,34 +1,45 @@
 ﻿@model IEnumerable<BibliotecaVirtual.Models.Editorial>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Editoriales";
     Layout = "~/Views/Shared/_Layout_two.cshtml";
 }
 
-<h2>Index</h2>
+<section id="services">
+    <div class="container wow fadeInUp">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">Editoriales</h3>
+                <div class="section-title-divider"></div>
+                <p class="section-description"></p>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                <a href="@Url.Action("Create", "Editorial")" class="btn btn-success"><i class="fa fa-plus"></i><span><strong> Crear</strong></span></a>
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Editorial", new { id = item.IdEditorial })" class=""><i class="fa fa-pencil"></i><span><strong> Editar</strong></span></a> |
+                            <a href="@Url.Action("Details", "Editorial", new { id = item.IdEditorial })" class=""><i class="fa fa-search"></i><span><strong> Ver</strong></span></a> |
+                            <a href="@Url.Action("Delete", "Editorial", new { id = item.IdEditorial })" class=""><i class="fa fa-trash"></i><span><strong> Eliminar</strong></span></a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEditorial }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEditorial }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEditorial })
-        </td>
-    </tr>
-}
-
-</table>

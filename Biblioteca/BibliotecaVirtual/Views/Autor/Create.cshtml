@@ -11,9 +11,9 @@
     <div class="container wow fadeInUp">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="section-title">Contact Us</h3>
+                <h3 class="section-title">Nuevo Autor</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                <p class="section-description"></p>
             </div>
         </div>
         <div class="row">
@@ -39,7 +39,7 @@
                                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                             </div>
                             <div class="text-center">
-                                <input type="submit" value="Crear" class="btn btn-success" />
+                                <button type="submit">Crear</button>
                                 <a href="@Url.Action("Index", "Autor")" class="btn btn-new"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
                             </div>
                         </form>

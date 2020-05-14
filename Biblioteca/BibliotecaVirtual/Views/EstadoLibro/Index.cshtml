@@ -1,34 +1,44 @@
 ﻿@model IEnumerable<BibliotecaVirtual.Models.EstadoLibro>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Estados Libros";
     Layout = "~/Views/Shared/_Layout_two.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdEstadoLibro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdEstadoLibro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdEstadoLibro })
-        </td>
-    </tr>
-}
-
-</table>
+    <section id="services">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Estados Libros</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description"></p>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <a href="@Url.Action("Create", "EstadoLibro")" class="btn btn-success"><i class="fa fa-plus"></i><span><strong> Crear</strong></span></a>
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "EstadoLibro", new { id = item.IdEstadoLibro })" class=""><i class="fa fa-pencil"></i><span><strong> Editar</strong></span></a> |
+                                <a href="@Url.Action("Details", "EstadoLibro", new { id = item.IdEstadoLibro })" class=""><i class="fa fa-search"></i><span><strong> Ver</strong></span></a> |
+                                <a href="@Url.Action("Delete", "EstadoLibro", new { id = item.IdEstadoLibro })" class=""><i class="fa fa-trash"></i><span><strong> Eliminar</strong></span></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
