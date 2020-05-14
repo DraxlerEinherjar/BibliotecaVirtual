@@ -131,7 +131,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AutorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -642,11 +641,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_HeaderNavBar.cshtml" />
     <Content Include="Views\Shared\_HeroSection.cshtml" />
-    <Content Include="Views\Autor\Create.cshtml" />
-    <Content Include="Views\Autor\Delete.cshtml" />
-    <Content Include="Views\Autor\Details.cshtml" />
-    <Content Include="Views\Autor\Edit.cshtml" />
-    <Content Include="Views\Autor\Index.cshtml" />
     <Content Include="Views\Shared\_Layout_two.cshtml" />
   </ItemGroup>
   <ItemGroup>
