@@ -1,0 +1,32 @@
+﻿<!--==========================
+   Sección de encabezado
+   ============================-->
+<header id="header">
+    <div class="container">
+        <div id="logo" class="pull-left">
+            <a href="#hero"><img src="~/Content/ProOnliPc/img/logo.png" alt="" title="" /></img></a>
+            <!-- Descomenta abajo si prefieres usar una imagen de texto -->
+            <!--<h1><a href="#hero">Encabezado 1</a></h1>-->
+        </div>
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#hero">Inicio</a></li>
+                <li>@Html.ActionLink("Tienda", "Index", "Tienda", null, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Carrito", "Index", "Carrito", null, new { @class = "nav-link" })</li>
+
+
+                <li class="menu-has-children">
+                    <a href="">Mantenedores</a>
+                    <ul>
+                        <li>@Html.ActionLink("Autores", "Index", "Autor")</li>
+                        <li>@Html.ActionLink("Editoriales", "Index", "Editorial")</li>
+                        <li>@Html.ActionLink("Géneros", "Index", "Genero")</li>
+                        <li>@Html.ActionLink("Libros", "Index", "Libro")</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- #nav-menu-container -->
+    </div>
+</header>
+<!-- #header -->

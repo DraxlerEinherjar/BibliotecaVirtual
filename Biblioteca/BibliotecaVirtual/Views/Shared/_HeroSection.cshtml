@@ -1,0 +1,19 @@
+﻿<!--==========================
+Hero Section
+============================-->
+<section id="hero">
+    <div class="hero-container">
+        <div class="wow fadeIn">
+            <div class="hero-logo">
+                @*<img class="" src="img/logo.png" alt="ProOnliPc">*@
+            </div>
+
+            <h1>Bienvenido a tu Biblitoeca Virtual</h1>
+            <h2><span class="rotating">Variedad de Libros, Variedad de Autores, Los Mejores Precios</span></h2>
+            <div class="actions">
+                @Html.ActionLink("Ir a la Tienda", "Index", "Tienda", null, new { @class = "btn-get-started" })
+                @Html.ActionLink("Ir al Carrito", "Index", "Carrito", null, new { @class = "btn-services" })
+            </div>
+        </div>
+    </div>
+</section>
