@@ -10,11 +10,8 @@
         </div>
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="#hero">Inicio</a></li>
-                <li>@Html.ActionLink("Tienda", "Index", "Tienda", null, new { @class = "nav-link" })</li>
+                <li class="menu-active">@Html.ActionLink("Tienda", "Index", "Home", null, new { @class = "nav-link" })</li>
                 <li>@Html.ActionLink("Carrito", "Index", "Carrito", null, new { @class = "nav-link" })</li>
-
-
                 <li class="menu-has-children">
                     <a href="">Mantenedores</a>
                     <ul>
