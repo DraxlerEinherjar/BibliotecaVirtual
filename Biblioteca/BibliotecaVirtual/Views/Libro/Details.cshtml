@@ -1,0 +1,91 @@
+﻿@model BibliotecaVirtual.Models.Libro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_two.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Libro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPublicacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPublicacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioUnitario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioUnitario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Editorial.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Editorial.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoLibro.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoLibro.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genero.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdLibro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BibliotecaVirtual.Models.Autor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_two.cshtml";
+}
+
+
+<section id="services">
+    <div class="container wow fadeInUp">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">Autores</h3>
+                <div class="section-title-divider"></div>
+                <p class="section-description"></p>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                @Html.ActionLink("Crear Nuevo", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.IdAutor },new { @class  = "btn btn-primary"}) |
+                            @Html.ActionLink("Detalle", "Details", new { id = item.IdAutor }, new { @class = "btn btn-info" }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.IdAutor }, new { @class = "btn btn-warning" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+

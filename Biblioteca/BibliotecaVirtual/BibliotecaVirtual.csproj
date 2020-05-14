@@ -131,7 +131,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AutorController.cs" />
+    <Compile Include="Controllers\EditorialController.cs" />
+    <Compile Include="Controllers\EstadoLibroController.cs" />
+    <Compile Include="Controllers\GeneroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -642,6 +647,31 @@
     <Content Include="Views\Shared\_HeaderNavBar.cshtml" />
     <Content Include="Views\Shared\_HeroSection.cshtml" />
     <Content Include="Views\Shared\_Layout_two.cshtml" />
+    <Content Include="Views\Autor\Create.cshtml" />
+    <Content Include="Views\Autor\Delete.cshtml" />
+    <Content Include="Views\Autor\Details.cshtml" />
+    <Content Include="Views\Autor\Edit.cshtml" />
+    <Content Include="Views\Autor\Index.cshtml" />
+    <Content Include="Views\Editorial\Create.cshtml" />
+    <Content Include="Views\Editorial\Delete.cshtml" />
+    <Content Include="Views\Editorial\Details.cshtml" />
+    <Content Include="Views\Editorial\Edit.cshtml" />
+    <Content Include="Views\Editorial\Index.cshtml" />
+    <Content Include="Views\Genero\Create.cshtml" />
+    <Content Include="Views\Genero\Delete.cshtml" />
+    <Content Include="Views\Genero\Details.cshtml" />
+    <Content Include="Views\Genero\Edit.cshtml" />
+    <Content Include="Views\Genero\Index.cshtml" />
+    <Content Include="Views\EstadoLibro\Create.cshtml" />
+    <Content Include="Views\EstadoLibro\Delete.cshtml" />
+    <Content Include="Views\EstadoLibro\Details.cshtml" />
+    <Content Include="Views\EstadoLibro\Edit.cshtml" />
+    <Content Include="Views\EstadoLibro\Index.cshtml" />
+    <Content Include="Views\Libro\Create.cshtml" />
+    <Content Include="Views\Libro\Delete.cshtml" />
+    <Content Include="Views\Libro\Details.cshtml" />
+    <Content Include="Views\Libro\Edit.cshtml" />
+    <Content Include="Views\Libro\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
