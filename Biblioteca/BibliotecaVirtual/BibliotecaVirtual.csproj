@@ -140,6 +140,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppValidation\AutorValidation.cs" />
+    <Compile Include="Models\AppValidation\EditorialValidation.cs" />
+    <Compile Include="Models\AppValidation\EstadoLibroValidation.cs" />
+    <Compile Include="Models\AppValidation\GeneroValidation.cs" />
+    <Compile Include="Models\AppValidation\LibroValidation.cs" />
     <Compile Include="Models\Autor.cs">
       <DependentUpon>BibliotecaModel.tt</DependentUpon>
     </Compile>
