@@ -23,7 +23,7 @@
                         <div class="info">
                             <div>
                                 <i class="fa fa-pencil"></i>
-                                <p>   @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                                <p>   @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label" })</p>
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                     @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="text-center">
-                                    <input type="submit" value="Crear" class="btn btn-success" />
+                                    <button type="submit">Crear</button>
                                     <a href="@Url.Action("Index", "Editorial")" class="btn btn-new"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
                                 </div>
                             </form>
