@@ -73,7 +73,7 @@
           <Property Name="FechaVenta" Type="datetime" />
           <Property Name="IdEstadoVenta" Type="int" />
         </EntityType>
-        <Association Name="FK_DetalleVenta_Libro">
+        <Association Name="FK_DetalleVenta_Libro1">
           <End Role="Libro" Type="Self.Libro" Multiplicity="0..1" />
           <End Role="DetalleVenta" Type="Self.DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +166,7 @@
           <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_DetalleVenta_Libro" Association="Self.FK_DetalleVenta_Libro">
+          <AssociationSet Name="FK_DetalleVenta_Libro1" Association="Self.FK_DetalleVenta_Libro1">
             <End Role="Libro" EntitySet="Libro" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
@@ -217,7 +217,7 @@
           <Property Name="Cantidad" Type="Int32" />
           <Property Name="ValorTotal" Type="Double" />
           <NavigationProperty Name="Venta" Relationship="Self.FK_DetalleVenta_Venta" FromRole="DetalleVenta" ToRole="Venta" />
-          <NavigationProperty Name="Libro" Relationship="BibliotecaModel.FK_DetalleVenta_Libro" FromRole="DetalleVenta" ToRole="Libro" />
+          <NavigationProperty Name="Libro" Relationship="BibliotecaModel.FK_DetalleVenta_Libro1" FromRole="DetalleVenta" ToRole="Libro" />
         </EntityType>
         <EntityType Name="Editorial">
           <Key>
@@ -298,7 +298,7 @@
             <End Role="Autor" EntitySet="Autor" />
             <End Role="Libro" EntitySet="Libro" />
           </AssociationSet>
-          <AssociationSet Name="FK_DetalleVenta_Libro" Association="BibliotecaModel.FK_DetalleVenta_Libro">
+          <AssociationSet Name="FK_DetalleVenta_Libro1" Association="BibliotecaModel.FK_DetalleVenta_Libro1">
             <End Role="Libro" EntitySet="Libro" />
             <End Role="DetalleVenta" EntitySet="DetalleVenta" />
           </AssociationSet>
@@ -314,7 +314,7 @@
             <End Role="Genero" EntitySet="Genero" />
             <End Role="Libro" EntitySet="Libro" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Genero">
           <Key>
             <PropertyRef Name="IdGenero" />
@@ -338,7 +338,7 @@
           <Property Name="Imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="IdGenero" Type="Int32" />
           <NavigationProperty Name="Autor" Relationship="BibliotecaModel.FK_Libro_Autor" FromRole="Libro" ToRole="Autor" />
-          <NavigationProperty Name="DetalleVenta" Relationship="BibliotecaModel.FK_DetalleVenta_Libro" FromRole="Libro" ToRole="DetalleVenta" />
+          <NavigationProperty Name="DetalleVenta" Relationship="BibliotecaModel.FK_DetalleVenta_Libro1" FromRole="Libro" ToRole="DetalleVenta" />
           <NavigationProperty Name="Editorial" Relationship="BibliotecaModel.FK_Libro_Editorial" FromRole="Libro" ToRole="Editorial" />
           <NavigationProperty Name="EstadoLibro" Relationship="BibliotecaModel.FK_Libro_EstadoLibro" FromRole="Libro" ToRole="EstadoLibro" />
           <NavigationProperty Name="Genero" Relationship="BibliotecaModel.FK_Libro_Genero" FromRole="Libro" ToRole="Genero" />
@@ -355,7 +355,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DetalleVenta_Libro">
+        <Association Name="FK_DetalleVenta_Libro1">
           <End Type="BibliotecaModel.Libro" Role="Libro" Multiplicity="0..1" />
           <End Type="BibliotecaModel.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
           <ReferentialConstraint>
@@ -403,7 +403,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

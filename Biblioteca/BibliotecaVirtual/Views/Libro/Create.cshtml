@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="row">
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create","Libro",FormMethod.Post,new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -91,7 +91,7 @@
                                     @Html.LabelFor(model => model.Stock, htmlAttributes: new { @class = "control-label" })
                                 </div>
                                 <div class="col-md-7 col-md-push-2">
-                                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.Stock, new { htmlAttributes = new { @class = "form-control", placeholder="Stock" } })
                                     @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     @Html.LabelFor(model => model.PrecioUnitario, htmlAttributes: new { @class = "control-label" })
                                 </div>
                                 <div class="col-md-7 col-md-push-2">
-                                    @Html.EditorFor(model => model.PrecioUnitario, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.PrecioUnitario, new { htmlAttributes = new { @class = "form-control",placholder = "Precio Unitario" } })
                                     @Html.ValidationMessageFor(model => model.PrecioUnitario, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -115,7 +115,8 @@
                                     @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label" })
                                 </div>
                                 <div class="col-md-7 col-md-push-2">
-                                    @Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })
+                                    @*@Html.EditorFor(model => model.Imagen, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    <input type="file" name="image" value="" accept="image/jpeg, image/jpg" />
                                     @Html.ValidationMessageFor(model => model.Imagen, "", new { @class = "text-danger" })
                                 </div>
                             </div>

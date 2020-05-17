@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using BibliotecaVirtual.Models;
 
@@ -53,6 +58,24 @@ namespace BibliotecaVirtual.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdLibro,Nombre,IdAutor,IdEditorial,FechaPublicacion,IdEstadoLibro,Stock,PrecioUnitario,Imagen,IdGenero")] Libro libro)
         {
+            HttpPostedFileBase fileBase = Request.Files[0];
+            if (fileBase.ContentLength == 0)
+            {
+                ModelState.AddModelError("Imagen", "El campo Imagen es requerido");
+            }
+            else
+            {
+                if (fileBase.FileName.EndsWith(".jpg"))
+                {
+                    WebImage image = new WebImage(fileBase.InputStream);
+                    libro.Imagen = image.GetBytes();
+                }
+                else
+                {
+                    ModelState.AddModelError("Imagen", "La Imagen debe ser de formato .jpg");
+                }
+            }
+           
             if (ModelState.IsValid)
             {
                 db.Libro.Add(libro);
@@ -93,9 +116,30 @@ namespace BibliotecaVirtual.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdLibro,Nombre,IdAutor,IdEditorial,FechaPublicacion,IdEstadoLibro,Stock,PrecioUnitario,Imagen,IdGenero")] Libro libro)
         {
+
+            byte[] imagenActual = null;
+            HttpPostedFileBase fileBase = Request.Files[0];
+            if (fileBase.ContentLength == 0)
+            {
+                imagenActual = db.Libro.SingleOrDefault(t => t.IdLibro == libro.IdLibro).Imagen;
+                libro.Imagen = imagenActual;
+            }
+            else
+            {
+                if (fileBase.FileName.EndsWith(".jpg"))
+                {
+                    WebImage image = new WebImage(fileBase.InputStream);
+                    libro.Imagen = image.GetBytes();
+                }
+                else
+                {
+                    ModelState.AddModelError("Imagen", "La Imagen debe ser de formato .jpg");
+                }
+            }
             if (ModelState.IsValid)
             {
-                db.Entry(libro).State = EntityState.Modified;
+                db.Libro.AddOrUpdate(libro);
+                //db.Entry(libro).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -139,6 +183,18 @@ namespace BibliotecaVirtual.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult GetImage(int id)
+        {
+            Libro libro = db.Libro.Find(id);
+            byte[] byteImage = libro.Imagen;
+            MemoryStream memoryStream = new MemoryStream(byteImage);
+            Image image = Image.FromStream(memoryStream);
+            memoryStream = new MemoryStream();
+            image.Save(memoryStream, ImageFormat.Jpeg);
+            memoryStream.Position = 0;
+            return File(memoryStream, "image/jpg");
         }
     }
 }

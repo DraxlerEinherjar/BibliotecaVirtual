@@ -14,9 +14,9 @@
         <AssociationConnector Association="BibliotecaModel.FK_DetalleVenta_Venta" ManuallyRouted="false" />
         <AssociationConnector Association="BibliotecaModel.FK_Venta_EstadoVenta" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BibliotecaModel.Genero" Width="1.5" PointX="3.25" PointY="5.375" FillColor="255, 128, 0" />
-        <EntityTypeShape EntityType="BibliotecaModel.Libro" Width="1.5" PointX="3.25" PointY="0.875" />
+        <EntityTypeShape EntityType="BibliotecaModel.Libro" Width="1.5" PointX="3.625" PointY="1" />
         <AssociationConnector Association="BibliotecaModel.FK_Libro_Autor" />
-        <AssociationConnector Association="BibliotecaModel.FK_DetalleVenta_Libro" />
+        <AssociationConnector Association="BibliotecaModel.FK_DetalleVenta_Libro1" />
         <AssociationConnector Association="BibliotecaModel.FK_Libro_Editorial" />
         <AssociationConnector Association="BibliotecaModel.FK_Libro_EstadoLibro" />
         <AssociationConnector Association="BibliotecaModel.FK_Libro_Genero" />

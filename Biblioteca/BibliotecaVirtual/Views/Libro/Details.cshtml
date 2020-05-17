@@ -1,91 +1,58 @@
 ﻿@model BibliotecaVirtual.Models.Libro
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalle";
     Layout = "~/Views/Shared/_Layout_two.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Libro</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+    <section id="services">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">@Html.DisplayFor(model => model.Nombre)</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description"></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 service-item">
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Nombre)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.Nombre)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Autor.Nombre)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.Autor.Nombre)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Editorial.Nombre)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.Editorial.Nombre)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Genero.Nombre)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.Genero.Nombre)</p>
+                </div>
+                <div class="col-md-4 service-item">
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.FechaPublicacion)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.FechaPublicacion)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.EstadoLibro.Nombre)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.EstadoLibro.Nombre)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.Stock)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.Stock)</p>
+                    <h4 class="service-title"><a href=""> @Html.DisplayNameFor(model => model.PrecioUnitario)</a></h4>
+                    <p class="service-description">@Html.DisplayFor(model => model.PrecioUnitario)</p>
+                </div>
+                <div class="col-md-4 service-item">
+                    <h4 class="service-title"><a href="">@Html.DisplayNameFor(model => model.Imagen)</a></h4>
+                    <p class="service-description"><img src="@Url.Action("GetImage","Libro", new { id = Model.IdLibro})" alt="Alternate Text" /></p>
+                </div>
+           
+                <div class="col-md-4 service-item">
+                    <h4 class="service-title">
+                        <a href="@Url.Action("Edit", "Libro", new { id = Model.IdLibro })" class="btn btn-new"><i class="fa fa-pencil"></i><span><strong> Editar</strong></span></a> |
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                        <a href="@Url.Action("Index", "Libro")" class="btn btn-new"><i class="fa fa-reply"></i><span><strong> Regresar</strong></span></a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaPublicacion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaPublicacion)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Stock)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Stock)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PrecioUnitario)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PrecioUnitario)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Imagen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Imagen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Autor.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Autor.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Editorial.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Editorial.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EstadoLibro.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EstadoLibro.Nombre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Genero.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Genero.Nombre)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdLibro }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
