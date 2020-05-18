@@ -46,19 +46,52 @@
 
 @section scripts{
     <script>
+
         $(document).ready(function () {
-            console.log("ready!");
+            ElementosCarrito();
         });
 
         function AddCart(e) {
-            console.log(e);
-
             $.ajax({
-                data: { "parametro1": "valor1", "parametro2": "valor2" },
+                data: { "id": e },
                 type: "POST",
                 dataType: "json",
-                url: "script.php",
+                url: "AgregarAlCarrito",
             })
+                .done(function (data, textStatus, jqXHR) {
+                    if (console && console.log) {
+                        ElementosCarrito();
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (console && console.log) {
+                        console.log("La solicitud a fallado: " + textStatus);
+                    }
+                });
+        }
+
+        function ElementosCarrito() {
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "ElementosCarrito",
+            })
+                .done(function (data, textStatus, jqXHR) {
+                    if (console && console.log) {
+                        if (data != "nodata") {
+                            $('#lblItems').text(data);
+                            $('#carritoSpan').show();
+                        } else {
+                            $('#lblItems').text('0');
+                            $('#carritoSpan').hide();
+                        }
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (console && console.log) {
+                        console.log("La solicitud a fallado: " + textStatus);
+                    }
+                });
         }
 
     </script>

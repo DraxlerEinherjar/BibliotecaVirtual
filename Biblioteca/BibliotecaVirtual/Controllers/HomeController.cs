@@ -38,16 +38,16 @@ namespace BibliotecaVirtual.Controllers
             return View();
         }
 
-        public ActionResult AgregarAlCarrito(int? id)
+        public JsonResult AgregarAlCarrito(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
             Libro libro = db.Libro.Find(id);
             if (libro == null)
             {
-                return HttpNotFound();
+                return Json("no data");
             }
             var session = HttpContext.Session["carrito"];
             if (session == null)
@@ -62,7 +62,21 @@ namespace BibliotecaVirtual.Controllers
                 libros.Add(libro);
                 HttpContext.Session["carrito"] = libros;
             }
-            return this.View();
+            return Json("Agregado al carrito!");
+        }
+
+        public JsonResult ElementosCarrito()
+        {
+            var session = HttpContext.Session["carrito"];
+            if (session == null)
+            {
+                return Json("nodata");
+            }
+            else
+            {
+                List<Libro> libros = HttpContext.Session["carrito"] as List<Libro>;
+                return Json(libros.Count);
+            }
         }
 
     }
