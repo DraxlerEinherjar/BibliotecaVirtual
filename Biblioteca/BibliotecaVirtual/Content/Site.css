@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+button {
+    background: #03C4EB !important;
+    border: 0 !important;
+    padding: 8px 20px !important;
+    color: #fff !important;
+    transition: 0.4s !important;
+}
+
+    button:hover {
+        background: #25d8fc !important;
+    }
+
+
+img {
+    /*width: 25% !important;*/
+}

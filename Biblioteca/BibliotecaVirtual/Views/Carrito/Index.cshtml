@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<BibliotecaVirtual.Models.Libro>
 
 @{
-    ViewBag.Title = "Biblioteca Virtual";
+    ViewBag.Title = "Carrito";
+    Layout = "~/Views/Shared/_Layout_two.cshtml";
 }
+
 
 
 <!--==========================
@@ -12,32 +14,39 @@
     <div class="container wow fadeInUp">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="section-title">Tienda</h3>
+                <h3 class="section-title">Carrito</h3>
                 <div class="section-title-divider"></div>
-                <p class="section-description">Encuentra una gran variedad de obras literarias</p>
             </div>
         </div>
-
-        <div class="row">
-
-            @foreach (var item in Model)
-            {
-                <div class="col-md-3">
-                    <div class="member">
-                        <div @*class="pic"*@><img src="@Url.Action("GetImage","Libro",new { id = item.IdLibro})" alt="" class="new"></div>
-                        <h4 style="height: 37px;"> @Html.DisplayFor(modelItem => item.Nombre)</h4>
-                        <span>@Html.DisplayFor(modelItem => item.Autor.Nombre)</span>
+        @{
+                foreach (var item in Model)
+                {
+                    var cantidad = Model.Where(w => w.IdLibro == item.IdLibro).Count();
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="member">
+                            <div @*class="pic"*@><img width="150" sizes="20px" src="@Url.Action("GetImage", "Libro", new { id = item.IdLibro })" alt=""></div>
+                            <h4 style="height: 37px;"> @Html.DisplayFor(modelItem => item.Nombre)</h4>
+                            <span>@Html.DisplayFor(modelItem => item.Autor.Nombre)</span>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
                         <div class="social">
                             <strong>@String.Format("{0:c}", item.PrecioUnitario)</strong> |
+                            <button class="new" id="TakeOffCart" onclick="TakeOffCart(@item.IdLibro)"><i class="fa fa-cart-arrow-down"></i> Quitar del Carro</button>
+                        </div>
+                        <div class="social">
+                            <button id="AddCart" onclick="AddCart(@item.IdLibro)"><i class="fa fa-plus"></i></button>
 
-                            <button id="addCart" onclick="AddCart(@item.IdLibro)" class="new"><i class="fa fa-cart-plus"></i> Comprar</button>
-                            @*<a id="addCart" href="@Url.Action("AgregarAlCarrito","Home",new { id = item.IdLibro }) " class="btn" style="color:black;"><i class="fa fa-cart-plus"></i>Agregar al Carro</a>*@
+                            <input type="text" class="form-control" name="txtCantidad" value="@cantidad" disabled />
+                            <button id="TakeOffCart" onclick="TakeOffCart(@item.IdLibro)"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
                 </div>
             }
+        }
 
-        </div>
         <br />
         <br />
         <br />
@@ -97,3 +106,4 @@
 
     </script>
 }
+
