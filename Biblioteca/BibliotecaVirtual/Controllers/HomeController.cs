@@ -38,16 +38,32 @@ namespace BibliotecaVirtual.Controllers
             return View();
         }
 
-        public ActionResult GetImage(int id)
+        public ActionResult AgregarAlCarrito(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             Libro libro = db.Libro.Find(id);
-            byte[] byteImage = libro.Imagen;
-            MemoryStream memoryStream = new MemoryStream(byteImage);
-            Image image = Image.FromStream(memoryStream);
-            memoryStream = new MemoryStream();
-            image.Save(memoryStream, ImageFormat.Jpeg);
-            memoryStream.Position = 0;
-            return File(memoryStream, "image/jpg");
+            if (libro == null)
+            {
+                return HttpNotFound();
+            }
+            var session = HttpContext.Session["carrito"];
+            if (session == null)
+            {
+                List<Libro> libros = new List<Libro>();
+                libros.Add(libro);
+                HttpContext.Session["carrito"] = libros;
+            }
+            else
+            {
+                List<Libro> libros = HttpContext.Session["carrito"] as List<Libro>;
+                libros.Add(libro);
+                HttpContext.Session["carrito"] = libros;
+            }
+            return this.View();
         }
+
     }
 }

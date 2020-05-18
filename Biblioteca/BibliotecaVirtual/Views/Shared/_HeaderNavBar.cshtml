@@ -1,6 +1,17 @@
 ﻿<!--==========================
    Sección de encabezado
    ============================-->
+<style>
+    #header a {
+        font-size: 18px !important;
+    }
+    #header .badge {
+        background: #03C4EB;
+        color: #fff;
+        padding: 0px 8px 4px 6px;
+        font-size: 20px !important;
+    }
+</style>
 <header id="header">
     <div class="container">
         <div id="logo" class="pull-left">
@@ -11,7 +22,16 @@
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li class="menu-active">@Html.ActionLink("Tienda", "Index", "Home", null, new { @class = "nav-link" })</li>
-                <li>@Html.ActionLink("Carrito", "Index", "Carrito", null, new { @class = "nav-link" })</li>
+                <li>
+                    <a href="@Url.Action("Index","Carrito")" class="nav-link">
+                        Carrito
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="badge">
+                            <label id="lblItems">9</label>
+                        </span>
+                    </a>
+                    
+                </li>
                 <li class="menu-has-children">
                     <a href="">Mantenedores</a>
                     <ul>

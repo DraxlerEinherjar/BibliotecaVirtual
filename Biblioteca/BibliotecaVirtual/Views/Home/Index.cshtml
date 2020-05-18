@@ -28,10 +28,10 @@
                         <h4> @Html.DisplayFor(modelItem => item.Nombre)</h4>
                         <span>@Html.DisplayFor(modelItem => item.Autor.Nombre)</span>
                         <div class="social">
-                            <a href="">@Html.DisplayFor(modelItem => item.PrecioUnitario)<i class="fa fa-twitter"></i></a>
-                            <a href=""><i class="fa fa-facebook"></i></a>
-                            <a href=""><i class="fa fa-google-plus"></i></a>
-                            <a href=""><i class="fa fa-linkedin"></i></a>
+                            <strong>@String.Format("{0:c}", item.PrecioUnitario)</strong> |
+                        
+                            <button id="addCart" onclick="AddCart(@item.IdLibro)" style="background: #03C4EB; border: 0; padding: 8px 20px; color: #fff; transition: 0.4s;"><i class="fa fa-cart-plus"></i> Comprar</button>
+                            @*<a id="addCart" href="@Url.Action("AgregarAlCarrito","Home",new { id = item.IdLibro }) " class="btn" style="color:black;"><i class="fa fa-cart-plus"></i>Agregar al Carro</a>*@
                         </div>
                     </div>
                 </div>
@@ -43,3 +43,23 @@
         <br />
     </div>
 </section>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            console.log("ready!");
+        });
+
+        function AddCart(e) {
+            console.log(e);
+
+            $.ajax({
+                data: { "parametro1": "valor1", "parametro2": "valor2" },
+                type: "POST",
+                dataType: "json",
+                url: "script.php",
+            })
+        }
+
+    </script>
+}

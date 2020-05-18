@@ -34,6 +34,7 @@ namespace BibliotecaVirtual.Models
 
         [Required(ErrorMessage = "{0} es requerido")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de publicación")]
         public System.DateTime FechaPublicacion { get; set; }
 

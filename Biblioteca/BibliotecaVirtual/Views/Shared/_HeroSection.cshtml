@@ -11,7 +11,8 @@ Hero Section
             <h1>Bienvenido a tu Biblitoeca Virtual</h1>
             <h2><span class="rotating">Variedad de Libros, Variedad de Autores, Los Mejores Precios</span></h2>
             <div class="actions">
-                @Html.ActionLink("Ir a la Tienda", "Index", "Tienda", null, new { @class = "btn-get-started" })
+                <a href="#team" class="btn-get-started">Ir a la Tienda</a>
+                @*@Html.ActionLink("Ir a la Tienda", "Index", "Home", null, new { @class = "btn-get-started" })*@
                 @Html.ActionLink("Ir al Carrito", "Index", "Carrito", null, new { @class = "btn-services" })
             </div>
         </div>
