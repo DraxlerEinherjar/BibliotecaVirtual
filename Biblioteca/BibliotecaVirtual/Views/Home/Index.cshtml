@@ -17,9 +17,7 @@
                 <p class="section-description">Encuentra una gran variedad de obras literarias</p>
             </div>
         </div>
-
         <div class="row">
-
             @foreach (var item in Model)
             {
                 <div class="col-md-3">
@@ -29,14 +27,15 @@
                         <span>@Html.DisplayFor(modelItem => item.Autor.Nombre)</span>
                         <div class="social">
                             <strong>@String.Format("{0:c}", item.PrecioUnitario)</strong> |
-
+                            <strong>Disponible: @item.Stock</strong>
+                        </div>
+                        <div class="social">
                             <button id="addCart" onclick="AddCart(@item.IdLibro)" class="new"><i class="fa fa-cart-plus"></i> Comprar</button>
                             @*<a id="addCart" href="@Url.Action("AgregarAlCarrito","Home",new { id = item.IdLibro }) " class="btn" style="color:black;"><i class="fa fa-cart-plus"></i>Agregar al Carro</a>*@
                         </div>
                     </div>
                 </div>
             }
-
         </div>
         <br />
         <br />

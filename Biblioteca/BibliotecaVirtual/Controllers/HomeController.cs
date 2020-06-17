@@ -11,6 +11,7 @@ using System.IO;
 using System.Net;
 using System.Web.Helpers;
 using BibliotecaVirtual.Models;
+using System.Globalization;
 
 namespace BibliotecaVirtual.Controllers
 {
@@ -40,10 +41,6 @@ namespace BibliotecaVirtual.Controllers
 
         public JsonResult AgregarAlCarrito(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
             Libro libro = db.Libro.Find(id);
             if (libro == null)
             {
@@ -64,6 +61,21 @@ namespace BibliotecaVirtual.Controllers
             }
             return Json("Agregado al carrito!");
         }
+
+        public JsonResult QuitarAlCarrito(int? id)
+        {
+            Libro libro = db.Libro.Find(id);
+            if (libro == null)
+            {
+                return Json("no data");
+            }
+            List<Libro> libros = HttpContext.Session["carrito"] as List<Libro>;
+            var itemToRemove = libros.Where(r => r.IdLibro == id).First();
+            libros.Remove(itemToRemove);
+            HttpContext.Session["carrito"] = libros;
+            return Json("Quitado del carrito!");
+        }
+
 
         public JsonResult ElementosCarrito()
         {

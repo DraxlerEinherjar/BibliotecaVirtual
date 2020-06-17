@@ -26,7 +26,7 @@ namespace BibliotecaVirtual.Controllers
             {
                 libros = HttpContext.Session["carrito"] as List<Libro>;
             }
-            //var libro = db.Libro.Include(l => l.Autor).Include(l => l.Editorial).Include(l => l.EstadoLibro).Include(l => l.Genero);
+            ViewBag.ids = libros.GroupBy(g => g.IdLibro).Select(s => s.Key).ToList();
             return View(libros.ToList());
         }
     }
