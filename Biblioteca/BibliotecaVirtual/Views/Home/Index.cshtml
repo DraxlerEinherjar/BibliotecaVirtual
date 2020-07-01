@@ -30,7 +30,7 @@
                             <strong>Disponible: @item.Stock</strong>
                         </div>
                         <div class="social">
-                            <button id="addCart" onclick="AddCart(@item.IdLibro)" class="new"><i class="fa fa-cart-plus"></i> Comprar</button>
+                            <button id="addCart" onclick="AddCart(@item.IdLibro)" class="new"><i class="fa fa-cart-plus"></i> Añadir al carrito</button>
                             @*<a id="addCart" href="@Url.Action("AgregarAlCarrito","Home",new { id = item.IdLibro }) " class="btn" style="color:black;"><i class="fa fa-cart-plus"></i>Agregar al Carro</a>*@
                         </div>
                     </div>
@@ -44,6 +44,7 @@
 </section>
 
 @section scripts{
+    @Scripts.Render("https://cdn.jsdelivr.net/npm/sweetalert2@9")
     <script>
         var urlAgregarAlCarro = "@Url.Action("AgregarAlCarrito", "Home")";
         var urlElementosCarrito = "@Url.Action("ElementosCarrito", "Home")";
@@ -60,6 +61,7 @@
             })
                 .done(function (data, textStatus, jqXHR) {
                     if (console && console.log) {
+                        Swal.fire('Añadido al carrito de compras :)');
                         ElementosCarrito();
                     }
                 })
@@ -78,7 +80,7 @@
             })
                 .done(function (data, textStatus, jqXHR) {
                     if (console && console.log) {
-                        if (data != "nodata") {
+                        if (data != "0" && data != "nodata") {
                             $('#lblItems').text(data);
                             $('#carritoSpan').show();
                         } else {

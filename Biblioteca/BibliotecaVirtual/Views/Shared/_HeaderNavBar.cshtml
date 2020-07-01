@@ -21,9 +21,9 @@
         </div>
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active">@Html.ActionLink("Tienda", "Index", "Home", null, new { @class = "nav-link" })</li>
+                <li id="menu-tienda" class="menu-active">@Html.ActionLink("Tienda", "Index", "Home", null, new { @class = "nav-link" })</li>
                 <li>
-                    <a href="@Url.Action("Index","Carrito")" class="nav-link">
+                    <a id="menu-carrito" href="@Url.Action("Index","Carrito")" class="nav-link">
                         Carrito
                         <i class="fa fa-shopping-cart"></i>
                         <span id="carritoSpan" class="badge" style="display:none;">
@@ -33,7 +33,7 @@
                     
                 </li>
                 <li class="menu-has-children">
-                    <a href="#">Mantenedores</a>
+                    <a id="menu-mantenedores" href="#">Mantenedores</a>
                     <ul>
                         <li>@Html.ActionLink("Autores", "Index", "Autor")</li>
                         <li>@Html.ActionLink("Editoriales", "Index", "Editorial")</li>

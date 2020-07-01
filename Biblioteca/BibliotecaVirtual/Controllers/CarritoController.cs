@@ -29,5 +29,18 @@ namespace BibliotecaVirtual.Controllers
             ViewBag.ids = libros.GroupBy(g => g.IdLibro).Select(s => s.Key).ToList();
             return View(libros.ToList());
         }
+
+        public ActionResult Compra()
+        {
+            //List<Libro> libros = new List<Libro>();
+            //var session = HttpContext.Session["carrito"];
+            //if (session != null)
+            //{
+            //    libros = HttpContext.Session["carrito"] as List<Libro>;
+            //}
+            //ViewBag.ids = libros.GroupBy(g => g.IdLibro).Select(s => s.Key).ToList();
+            //return View(libros.ToList());
+            return View();
+        }
     }
 }

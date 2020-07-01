@@ -7,55 +7,130 @@
 
 }
 
-
-<section id="team">
-    <div class="container wow fadeInUp">
-        <div class="row">
-            <div class="col-md-12">
-                <h3 class="section-title">Carrito</h3>
-                <div class="section-title-divider"></div>
-                @if (ViewBag.ids.Count == 0)
-                {
-                    <p class="section-description">Nada por aquí! ;)</p>
-                }
+@if (ViewBag.ids.Count != 0)
+{
+    <section id="subscribe" class="row">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-8">
+                    <a class="subscribe-btn" id="btn-pagar" onclick="MostrarPagar()">Ir a Pagar</a>
+                </div>
             </div>
         </div>
-        <div class="row">
-            @if (ViewBag.ids != null)
-            {
-                foreach (var id in ViewBag.ids)
+    </section>
+}
+
+<div id="dvCarrito">
+    <section id="team">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Carrito</h3>
+                    <div class="section-title-divider"></div>
+                    @if (ViewBag.ids.Count == 0)
+                    {
+                        <p class="section-description">Nada por aquí! ;)</p>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                @if (ViewBag.ids != null)
                 {
-                    var obj = Model.Where(w => w.IdLibro == id).FirstOrDefault() as BibliotecaVirtual.Models.Libro;
-                    var cantidad = Model.Where(w => w.IdLibro == id).Count();
-                    <div class="col-md-3">
-                        <div class="member">
-                            <div @*class="pic"*@><img src="@Url.Action("GetImage","Libro",new { id = obj.IdLibro})" alt="" class="new"></div>
-                            <h4 style="height: 37px;"> @Html.DisplayFor(modelItem => obj.Nombre)</h4>
-                            <span>@Html.DisplayFor(modelItem => obj.Autor.Nombre)</span>
-                            <div class="social">
-                                <strong>@String.Format("{0:c}", obj.PrecioUnitario)</strong>
-                            </div>
-                            <div class="social">
-                                <button id="AddCart" onclick="AddCart(@obj.IdLibro)"><i class="fa fa-plus"></i></button>    |
-                                <strong><label id="lbl_@obj.IdLibro">@cantidad</label></strong>  |
-                                <button id="TakeOffCart" onclick="SubtractCart(@obj.IdLibro)"><i class="fa fa-minus"></i></button>
+                    foreach (var id in ViewBag.ids)
+                    {
+                        var obj = Model.Where(w => w.IdLibro == id).FirstOrDefault() as BibliotecaVirtual.Models.Libro;
+                        var cantidad = Model.Where(w => w.IdLibro == id).Count();
+                        <div class="col-md-3" id="dv_@obj.IdLibro">
+                            <div class="member">
+                                <div @*class="pic"*@><img src="@Url.Action("GetImage", "Libro", new { id = obj.IdLibro })" alt="" class="new"></div>
+                                <h4 style="height: 37px;"> @Html.DisplayFor(modelItem => obj.Nombre)</h4>
+                                <span>@Html.DisplayFor(modelItem => obj.Autor.Nombre)</span>
+                                <div class="social">
+                                    <strong>@String.Format("{0:c}", obj.PrecioUnitario)</strong>
+                                </div>
+                                <div class="social">
+                                    <button id="AddCart" onclick="UpdateCarro(@obj.IdLibro, true)"><i class="fa fa-plus"></i></button>    |
+                                    <strong><label id="lbl_@obj.IdLibro">@cantidad</label></strong>  |
+                                    <button id="TakeOffCart" onclick="UpdateCarro(@obj.IdLibro, false)"><i class="fa fa-minus"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 }
-            }
-            else
-            {
-
-            }
+            </div>
+            <br />
+            <br />
+            <br />
         </div>
-        <br />
-        <br />
-        <br />
-    </div>
-</section>
+    </section>
+</div>
+
+<div id="dvCompra" style="display:none;">
+    <section id="services">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Detalle de la compra</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description"> Fecha de la combra: <label>@DateTime.Now.ToShortDateString()</label></p>
+                   
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <a href="@Url.Action("Compra", "Carrito")" class="btn btn-success"><i class="fa fa-plus"></i><span><strong> Pagar</strong></span></a>
+                </p>
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.Autor.Nombre)</th>
+                        <th>Unidades</th>
+                        <th>@Html.DisplayNameFor(model => model.PrecioUnitario)</th>
+                        <th>Total</th>
+
+                    </tr>
+                    @{
+                        double? total = 0;
+                    }
+
+                    @if (ViewBag.ids != null)
+                    {
+                        foreach (var id in ViewBag.ids)
+                        {
+                            var obj = Model.Where(w => w.IdLibro == id).FirstOrDefault() as BibliotecaVirtual.Models.Libro;
+                            var cantidad = Model.Where(w => w.IdLibro == id).Count();
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => obj.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => obj.Autor.Nombre)</td>
+                                <td>@cantidad</td>
+                                <td>@String.Format("{0:c}", obj.PrecioUnitario)</td>
+                                <td>@String.Format("{0:c}", (obj.PrecioUnitario * cantidad))</td>
+                            </tr>
+                            total += (obj.PrecioUnitario * cantidad);
+                        }
+                    }
+
+                    <tr>
+                        <th>Total a pagar</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>@String.Format("{0:c}", total)</th>
+                    </tr>
+
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
 
 @section scripts{
+    @Scripts.Render("https://cdn.jsdelivr.net/npm/sweetalert2@9")
+
     <script>
         var urlAgregarAlCarro = "@Url.Action("AgregarAlCarrito", "Home")";
         var urlQuitarAlCarrito = "@Url.Action("QuitarAlCarrito", "Home")";
@@ -72,9 +147,9 @@
                 url: urlAgregarAlCarro,
             })
                 .done(function (data, textStatus, jqXHR) {
-                    console.log(data);
                     if (console && console.log) {
                         ElementosCarrito();
+                        LastMove();
                     }
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -85,25 +160,83 @@
                 });
         }
 
-        function SubtractCart(e) {
-            $.ajax({
-                data: { "id": e },
-                type: "POST",
-                dataType: "json",
-                url: urlQuitarAlCarrito,
-            })
-                .done(function (data, textStatus, jqXHR) {
-                    console.log(data);
-                    if (console && console.log) {
-                        ElementosCarrito();
+        function SubtractCart(e, last) {
+            if (last) {
+                Swal.fire({
+                    title: '¿Estás Seguro?',
+                    text: "para añadir este título nuevamente al carrito, debes hacerlo desde la tienda.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            data: { "id": e },
+                            type: "POST",
+                            dataType: "json",
+                            url: urlQuitarAlCarrito,
+                        })
+                            .done(function (data, textStatus, jqXHR) {
+                                if (console && console.log) {
+                                    ElementosCarrito();
+                                    $('#dv_' + e).remove();
+                                    //Swal.fire(
+                                    //    'Listo!',
+                                    //    'El Título fue quitado de la lista.',
+                                    //    'success'
+                                    //);
+                                    LastMove();
+                                }
+                            })
+                            .fail(function (jqXHR, textStatus, errorThrown) {
+                                console.log('mal');
+                                if (console && console.log) {
+                                    console.log("La solicitud a fallado: " + textStatus);
+                                }
+                            });
                     }
                 })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    console.log('mal');
-                    if (console && console.log) {
-                        console.log("La solicitud a fallado: " + textStatus);
-                    }
-                });
+            } else {
+                $.ajax({
+                    data: { "id": e },
+                    type: "POST",
+                    dataType: "json",
+                    url: urlQuitarAlCarrito,
+                })
+                    .done(function (data, textStatus, jqXHR) {
+                        if (console && console.log) {
+                            ElementosCarrito();
+                            LastMove();
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        console.log('mal');
+                        if (console && console.log) {
+                            console.log("La solicitud a fallado: " + textStatus);
+                        }
+                    });
+            }
+        }
+
+        function UpdateCarro(id, suma) {
+            var count = $('#lbl_' + id).text();
+            if (suma) {
+                count++;
+                $('#lbl_' + id).text(count);
+                AddCart(id);
+            }
+            else {
+                if (count == 1) {
+                    SubtractCart(id, true)
+                } else {
+                    SubtractCart(id, false)
+                    count--;
+                    $('#lbl_' + id).text(count)
+                }
+
+            }
+
         }
 
         function ElementosCarrito() {
@@ -114,12 +247,13 @@
             })
                 .done(function (data, textStatus, jqXHR) {
                     if (console && console.log) {
-                        if (data != "nodata") {
+                        if (data != "0" && data != "nodata") {
                             $('#lblItems').text(data);
                             $('#carritoSpan').show();
                         } else {
                             $('#lblItems').text('0');
                             $('#carritoSpan').hide();
+                            Swal.fire('Nada por aquí :D')
                         }
                     }
                 })
@@ -130,10 +264,23 @@
                 });
         }
 
-
-        function UpdateLabel(e) {
-
+        function MostrarPagar() {
+            var val = $('#btn-pagar').text();
+                if (val == 'Ir a Pagar') {
+                    $('#dvCarrito').hide('slow');
+                    $('#dvCompra').show('slow');
+                    $('#btn-pagar').text('Volver al Carrito');
+                } else {
+                    $('#dvCarrito').show('slow');
+                    $('#dvCompra').hide('slow');
+                    $('#btn-pagar').text('Ir a Pagar');
+                }
         }
+
+        function LastMove() {
+            location.reload()
+        }
+
     </script>
 }
 
